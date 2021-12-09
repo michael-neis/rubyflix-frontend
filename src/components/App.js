@@ -100,23 +100,59 @@ function App() {
       body: JSON.stringify(movie)
     })
     .then(res => res.json())
-    .then((string) =>{
-      // console.log(string)
-      alert(string.message)
+    .then((data) =>{
+      alert(data.message)
       setWatchlistMovies([...watchlistMovies, movie])
     })
   }
 
-  const handleRemoveFromWatchlist = () => {
-    console.log("hello")
+  const handleRemoveFromWatchlist = (movie) => {
+    const watchlistMovie = user.watchlists.find(list => list.movie_id === movie.id)
+    fetch(`http://localhost:9292/watchlist/${watchlistMovie.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then((data) =>{
+      alert(data.message)
+      const removedArray = watchlistMovies.filter(film => film.id !== movie.id)
+      setWatchlistMovies(removedArray)
+    })
   }
 
-  const handleCreateReview = () => {
-    console.log("hello")
+  const handleCreateReview = (data, id) => {
+    fetch('http://localhost:9292/reviews', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        star_rating: data.star_rating,
+        comment: data.comment,
+        id: id
+      })
+    })
+    .then(res => res.json())
+    .then((data) =>{
+      alert(data.message)
+    })
   }
 
-  const handleEditReview = () => {
-    console.log("hello")
+  const handleEditReview = (data, review) => {
+    fetch(`http://localhost:9292/reviews/${review.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        star_rating: data.star_rating,
+        comment: data.comment,
+      }),
+    })
+      .then((r) => r.json())
+      .then((newReview) => console.log(newReview))
   }
 
   return (
@@ -139,7 +175,7 @@ function App() {
 
         <Route path="/results" element={<DisplayContainer watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} setDetailMovie={setDetailMovie} displayName={`Results for "${searchedWord}"`} handleDetailClick={handleDetailClick} moviesToShow={allMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist}/>}/>
 
-        <Route path="/details" element={<ExactDetails movie={detailMovie} watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist}/>}/>
+        <Route path="/details" element={<ExactDetails movie={detailMovie} watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user}/>}/>
 
         <Route path="/findmovie" element={<FindNewMovie watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist}/>}/>
       </Routes>

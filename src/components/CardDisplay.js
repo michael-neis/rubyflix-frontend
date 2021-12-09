@@ -11,7 +11,6 @@ function CardDisplay ({movie, handleDetailClick, watchlistMovies, reviewedMovies
 
     const movieId = movie.id
     const allMovieIdsWatch = watchlistMovies.map(movie => movie.id)
-    const allMovieIdsRev = reviewedMovies.map(movie => movie.id)
 
     return(
     <CardDiv>
@@ -22,8 +21,7 @@ function CardDisplay ({movie, handleDetailClick, watchlistMovies, reviewedMovies
         <h6>Directed by:</h6>
         <h4>{movie.director.first_name} {movie.director.last_name}</h4>
         <h5>{movie.genre} | Rated: {movie.mpa_rating}</h5>
-        {allMovieIdsWatch.includes(movieId) ? <Button size="small" variant="contained" color="secondary" onClick={() => handleRemoveFromWatchlist(movie)}>Remove</Button> : <Button size="small" variant="contained" color="success" onClick={() => handleAddToWatchlist(movie)}>Add</Button>}
-        {allMovieIdsRev.includes(movieId) ? <Button size="small" variant="contained" color="warning" onClick={() => handleEditReview(movie)}>Edit</Button> : <Button size="small" variant="contained" color="primary" onClick={() => handleCreateReview(movie)}>Create</Button>}
+        {allMovieIdsWatch.includes(movieId) ? <Button size="small" variant="contained" color="secondary" onClick={() => handleRemoveFromWatchlist(movie)}>Remove from Watchlist</Button> : <Button size="small" variant="contained" color="success" onClick={() => handleAddToWatchlist(movie)}>Add to Watchlist</Button>}
     </CardDiv>
     )
 }
