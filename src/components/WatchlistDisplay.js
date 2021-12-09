@@ -1,8 +1,18 @@
 import CardDisplay from "./CardDisplay";
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-function DisplayContainer ({moviesToShow, handleDetailClick, displayName, watchlistMovies, reviewedMovies, setDetailMovie, handleEditReview, handleCreateReview, handleRemoveFromWatchlist, handleAddToWatchlist, user, handleDirectorClick}) {
+function WatchlistContainer ({}) {
+
+    const [watchlistMovies, setWatchlistMovies] = useState([])
+
+    useEffect(() => {
+        fetch('localhost:9292/watchlists')
+        .then(res => res.json())
+        .then(data =>{
+            setWatchlistMovies(data)
+        })
+      }, [])
 
     const movies = moviesToShow.map(movie => <CardDisplay key={movie.id} movie={movie} handleDetailClick={handleDetailClick} watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} setDetailMovie={setDetailMovie} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user} handleDirectorClick={handleDirectorClick}/>)
 
@@ -16,7 +26,7 @@ function DisplayContainer ({moviesToShow, handleDetailClick, displayName, watchl
     )
 }
 
-export default DisplayContainer
+export default WatchlistContainer
 
 const DisplayDiv = styled.div `
 

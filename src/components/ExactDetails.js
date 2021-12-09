@@ -9,13 +9,13 @@ function ExactDetails ({movie, watchlistMovies, reviewedMovies, handleEditReview
     if (!movie)
     window.location.href = "http://localhost:3000";
 
-    const [formBool, setFormBool] = useState(false)
+    let [formBool, setFormBool] = useState(false)
 
-    const movieId = movie.id
-    const allMovieIdsWatch = watchlistMovies.map(movie => movie.id)
-    const allMovieIdsRev = reviewedMovies.map(movie => movie.id)
+    let movieId = movie.id
+    let allMovieIdsWatch = watchlistMovies.map(movie => movie.id)
+    let allMovieIdsRev = reviewedMovies.map(movie => movie.id)
 
-    const review = allMovieIdsRev.includes(movieId) ? user.reviews.find(review => review.movie_id === movie.id) : null
+    let review = allMovieIdsRev.includes(movieId) ? user.reviews.find(review => review.movie_id === movie.id) : null
 
     const handleFormBool = () => {
         setFormBool(false)

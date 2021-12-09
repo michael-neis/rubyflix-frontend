@@ -36,7 +36,7 @@ function ReviewForm ({review, handleFormBool, handleEditReview, handleCreateRevi
     
     const handleSubmit = (e, data, review, movie) => {
         e.preventDefault()
-        review ? handleEditReview(data, review) : handleCreateReview(data, movie.id)
+        review ? handleEditReview(data, review, movie) : handleCreateReview(data, movie)
         handleFormBool()
     }
 

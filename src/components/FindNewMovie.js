@@ -2,19 +2,17 @@ import { Button } from "@mui/material"
 import { useState } from "react"
 import ExactDetails from "./ExactDetails"
 
-function FindNewMovie ({watchlistMovies, reviewedMovies}) {
+function FindNewMovie ({watchlistMovies, reviewedMovies, handleEditReview, handleCreateReview, handleRemoveFromWatchlist, handleAddToWatchlist, user}) {
 
     const [newMovie, setNewMovie] = useState(null)
 
     const queryNewMovie = () =>{
         fetch('http://localhost:9292/user/find_new_movie')
         .then(res => res.json())
-        .then(data =>
+        .then(data =>{
             setNewMovie(data)
-        )
+        })
     }
-
-    console.log(newMovie)
 
     let newMovieToShow
 
@@ -23,7 +21,7 @@ function FindNewMovie ({watchlistMovies, reviewedMovies}) {
     else if (newMovie === "not enough reviews")
         newMovieToShow = <h1>We couldn't find you a match. Try adding more reviews so we can narrow down a suggestion!</h1>
     else
-        newMovieToShow = <ExactDetails movie={newMovie} watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies}/>
+        newMovieToShow = <ExactDetails movie={newMovie} watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user}/>
 
     return(
         <>

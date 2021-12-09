@@ -7,10 +7,13 @@ import Button from '@mui/material/Button';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
-function CardDisplay ({movie, handleDetailClick, watchlistMovies, reviewedMovies, setDetailMovie, handleEditReview, handleCreateReview, handleRemoveFromWatchlist, handleAddToWatchlist}) {
+function CardDisplay ({movie, handleDetailClick, watchlistMovies, reviewedMovies, setDetailMovie, handleEditReview, handleCreateReview, handleRemoveFromWatchlist, handleAddToWatchlist, user, handleDirectorClick}) {
 
     const movieId = movie.id
     const allMovieIdsWatch = watchlistMovies.map(movie => movie.id)
+    let allMovieIdsRev = reviewedMovies.map(movie => movie.id)
+    const isReviewed = allMovieIdsRev.includes(movieId) ? user.reviews.find(review => review.movie_id === movie.id).star_rating : null
+
 
     return(
     <CardDiv>
@@ -18,8 +21,9 @@ function CardDisplay ({movie, handleDetailClick, watchlistMovies, reviewedMovies
         <Link to="/details" onClick={() => setDetailMovie(movie)}>
             <h3>{movie.title}</h3>
         </Link>
+        {isReviewed ? <h4 style={{color: 'gold'}}>{"★".repeat(isReviewed)}</h4> : <h5>*not yet reviewed*</h5>}
         <h6>Directed by:</h6>
-        <h4>{movie.director.first_name} {movie.director.last_name}</h4>
+        <DirectorH4 onClick={() => handleDirectorClick(movie.director)}>{movie.director.first_name} {movie.director.last_name}</DirectorH4>
         <h5>{movie.genre} | Rated: {movie.mpa_rating}</h5>
         {allMovieIdsWatch.includes(movieId) ? <Button size="small" variant="contained" color="secondary" onClick={() => handleRemoveFromWatchlist(movie)}>Remove from Watchlist</Button> : <Button size="small" variant="contained" color="success" onClick={() => handleAddToWatchlist(movie)}>Add to Watchlist</Button>}
     </CardDiv>
@@ -62,11 +66,18 @@ a:visited{
 }
 
 h3:hover{
-    color: blue;
+    color: #fcba03;
     cursor: pointer;
+    font-style: italic;
 }
 `
-
+const DirectorH4 = styled.h4`
+    :hover{
+        color: #754c9e;
+        cursor: pointer;
+        font-style: italic;
+    }
+`
 
 
 /* <Card sx={{ maxWidth: 345 }}>
