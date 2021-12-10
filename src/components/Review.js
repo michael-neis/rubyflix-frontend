@@ -6,9 +6,10 @@ function Review ({review}) {
 
     return(
         <div>
-            <h2>My Rating: {review.star_rating}/10</h2>
+            <h1>Guubie</h1>
+            {/* <h2>My Rating: {review.star_rating}/10</h2>
             <h3>My Review:</h3>
-            <p>{review.comment}</p>
+            <p>{review.comment}</p> */}
         </div>
     )
 }

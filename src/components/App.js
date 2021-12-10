@@ -12,6 +12,7 @@ import ExactDetails from './ExactDetails';
 import FindNewMovie from './FindNewMovie';
 import WatchlistDisplay from './WatchlistDisplay';
 import ReviewsDisplay from './ReviewsDisplay';
+import DetailsContainer from './DetailsContainer';
 
 
 function App() {
@@ -156,7 +157,7 @@ const handleDirectorClick = (director) => {
         <Route path="/watchlist" element={<WatchlistDisplay />}/>
         <Route path="/reviews" element={<ReviewsDisplay />}/>
 
-        <Route path="/movies/:id" element={<ExactDetails />}/>
+        <Route path="/movies/:id" element={<DetailsContainer user={user}/>}/>
 
         {/* <Route path="/watchlist" element={<DisplayContainer watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} setDetailMovie={setDetailMovie} displayName={"My Watchlist"} handleDetailClick={handleDetailClick} moviesToShow={watchlistMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user} handleDirectorClick={handleDirectorClick}/>}/> */}
 
