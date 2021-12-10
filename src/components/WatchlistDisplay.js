@@ -33,7 +33,7 @@ function WatchlistDisplay () {
 
     return(
         <>
-        <h1>My Watchlist</h1>
+        <h1 style={{color: '#e8c495'}}>My Watchlist</h1>
         <DisplayDiv>
             {showMovies}
         </DisplayDiv>
@@ -49,15 +49,9 @@ const DisplayDiv = styled.div `
   padding: 10px 10px 10px 10px;
   display: flex;
   flex-wrap: wrap;
-  /* width: 800px; */
-  background-color: hsl(0, 0%, 95%);
-  border-radius: 5px;   
-  border: double;
+  background-color: #632626;
+  border: outset;
   border-width: 4px;
-
-  div:hover {
-    background-color: hsl(210, 50%, 95%);
-  border-color: hsl(180, 50%, 20%);
-  }
+  border-color: #632626;
 
 `

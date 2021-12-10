@@ -27,4 +27,10 @@ export default ExactDetails
 
 const DetailsDiv = styled.div`
 
+color: #e8c495;
+
+img{
+    width: 40%;
+}
+
 `

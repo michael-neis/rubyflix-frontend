@@ -12,7 +12,6 @@ function FindNewMovie () {
         .then(res => res.json())
         .then(data =>{
             setNewMovie(data)
-            console.log(data)
         })
     }
 
@@ -34,10 +33,12 @@ function FindNewMovie () {
         </MovieDiv>
 
     return(
-        <>
-        <Button variant="contained" onClick={() => queryNewMovie()}>Find Me a New Movie!</Button>
-        {newMovie ? newMovieToShow : <h1>nothin</h1>}
-        </>
+        <div style={{marginTop: "40px", color: "#e8c495"}}>
+        <Button variant="contained" color="success" onClick={() => queryNewMovie()}>Find Me a New Movie!</Button>
+        <br/>
+        <br/>
+        {newMovie ? newMovieToShow : null}
+        </div>
     )
 }
 
@@ -51,5 +52,9 @@ a{
 
 a:visited{
     color: black;
+}
+
+img{
+    width: 40%;
 }
 `

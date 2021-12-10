@@ -1,13 +1,17 @@
 import CardDisplay from "./CardDisplay";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function ReviewsDisplay () {
+
+function GenreDisplay () {
+
+    const sortGenre = useParams()
 
     const [userMovies, setUserMovies] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:9292/reviews')
+        fetch(`http://localhost:9292/genres/${sortGenre.genre}`)
         .then(res => res.json())
         .then(data =>{
             setUserMovies(data)
@@ -48,7 +52,7 @@ function ReviewsDisplay () {
 
     return(
         <>
-        <h1 style={{color: '#e8c495'}}>My Reviews</h1>
+        <h1 style={{color: '#e8c495'}}>{sortGenre.genre}</h1>
         <DisplayDiv>
             {showMovies}
         </DisplayDiv>
@@ -56,7 +60,7 @@ function ReviewsDisplay () {
     )
 }
 
-export default ReviewsDisplay
+export default GenreDisplay
 
 const DisplayDiv = styled.div `
 
@@ -64,7 +68,9 @@ const DisplayDiv = styled.div `
   padding: 10px 10px 10px 10px;
   display: flex;
   flex-wrap: wrap;
+  /* width: 800px; */
   background-color: #632626;
+  /* border-radius: 5px;    */
   border: outset;
   border-width: 4px;
   border-color: #632626;

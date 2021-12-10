@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-// import ListItemAvatar from '@mui/material/ListItemAvatar';
-// import ListItemText from '@mui/material/ListItemText';
-// import ListSubheader from '@mui/material/ListSubheader';
-// import { Home } from "@mui/icons-material";
 
 function Notifications () {
 
@@ -12,11 +8,7 @@ function Notifications () {
         <NotificationsDiv>
             <h1>Notifications</h1>
             <List>
-                <ListItem>Hello World</ListItem>
-                <ListItem>Hello World</ListItem>
-                <ListItem>Hello World</ListItem>
-                <ListItem>Hello World</ListItem>
-                <ListItem>Hello World</ListItem>
+                <ListItem>Nothing to see here</ListItem>
             </List>
         </NotificationsDiv>
     )
@@ -30,9 +22,9 @@ const NotificationsDiv = styled.div`
     margin: 0px 20px 0px 10px;
     float: left;
     width: 200px;
-    background: hsl(0, 0%, 90%);
-    border: solid;
-    border-width: 1px;
-    border-radius: 5px; 
+    background: #785a55;
+    border: outset;
+    border-width: 3px;
+    border-color: #785a55;
     height: 95vh;
 `
