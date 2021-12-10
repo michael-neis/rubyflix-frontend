@@ -7,25 +7,27 @@ import Button from '@mui/material/Button';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
-function CardDisplay ({movie, handleDetailClick, watchlistMovies, reviewedMovies, setDetailMovie, handleEditReview, handleCreateReview, handleRemoveFromWatchlist, handleAddToWatchlist, user, handleDirectorClick}) {
-
-    const movieId = movie.id
-    const allMovieIdsWatch = watchlistMovies.map(movie => movie.id)
-    let allMovieIdsRev = reviewedMovies.map(movie => movie.id)
-    const isReviewed = allMovieIdsRev.includes(movieId) ? user.reviews.find(review => review.movie_id === movie.id).star_rating : null
-
+function CardDisplay ({movie, handleAddToWatchlist, handleRemoveFromWatchlist}) {
 
     return(
     <CardDiv>
         <img src="https://simg.nicepng.com/png/small/246-2469081_jake-adventure-time-and-jake-the-dog-image.png" alt="jake"/>
-        <Link to="/details" onClick={() => setDetailMovie(movie)}>
+        <Link to={`/movies/${movie.movie.id}`}>
+            <h3>{movie.movie.title}</h3>
+        </Link>
+        {movie.review ? <h4 style={{color: 'gold'}}>{"★".repeat(movie.review.star_rating)}</h4> : <h5>*not yet reviewed*</h5>}
+        <h6>Directed by:</h6>
+        <DirectorH4 onClick={() => console.log("director")}>{movie.director.first_name} {movie.director.last_name}</DirectorH4>
+        <h5>{movie.movie.genre} | Rated: {movie.movie.mpa_rating}</h5>
+        {movie.watchlist ? <Button size="small" variant="contained" color="secondary" onClick={() => handleRemoveFromWatchlist(movie)}>Remove from Watchlist</Button> : <Button size="small" variant="contained" color="success" onClick={() => handleAddToWatchlist(movie)}>Add to Watchlist</Button>}
+        {/* <Link to="/" onClick={() => console.log(movie)}>
             <h3>{movie.title}</h3>
         </Link>
         {isReviewed ? <h4 style={{color: 'gold'}}>{"★".repeat(isReviewed)}</h4> : <h5>*not yet reviewed*</h5>}
         <h6>Directed by:</h6>
         <DirectorH4 onClick={() => handleDirectorClick(movie.director)}>{movie.director.first_name} {movie.director.last_name}</DirectorH4>
         <h5>{movie.genre} | Rated: {movie.mpa_rating}</h5>
-        {allMovieIdsWatch.includes(movieId) ? <Button size="small" variant="contained" color="secondary" onClick={() => handleRemoveFromWatchlist(movie)}>Remove from Watchlist</Button> : <Button size="small" variant="contained" color="success" onClick={() => handleAddToWatchlist(movie)}>Add to Watchlist</Button>}
+        {allMovieIdsWatch.includes(movieId) ? <Button size="small" variant="contained" color="secondary" onClick={() => handleRemoveFromWatchlist(movie)}>Remove from Watchlist</Button> : <Button size="small" variant="contained" color="success" onClick={() => handleAddToWatchlist(movie)}>Add to Watchlist</Button>} */}
     </CardDiv>
     )
 }

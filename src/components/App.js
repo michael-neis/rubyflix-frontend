@@ -10,6 +10,8 @@ import Header from './Header';
 import Search from './Search';
 import ExactDetails from './ExactDetails';
 import FindNewMovie from './FindNewMovie';
+import WatchlistDisplay from './WatchlistDisplay';
+import ReviewsDisplay from './ReviewsDisplay';
 
 
 function App() {
@@ -64,14 +66,14 @@ function App() {
   //   })
   // }, [])
 
-  useEffect(() => {
-    fetch('http://localhost:9292/watchlists')
-    .then(res => res.json())
-    .then(data =>{
-        // setWatchlistMovies(data)
-        console.log(data)
-    })
-  }, [])
+  // useEffect(() => {
+  //   fetch('http://localhost:9292/watchlists')
+  //   .then(res => res.json())
+  //   .then(data =>{
+  //       // setWatchlistMovies(data)
+  //       console.log(data)
+  //   })
+  // }, [])
 
   useEffect(() => {
     fetch(`${baseUrl}/user/reviews`)
@@ -98,37 +100,6 @@ function App() {
   const handleDetailClick = (word) => {
     console.log(word)
     setDetailedDisplay(word)
-  }
-
-  const handleAddToWatchlist = (movie) => {
-    fetch('http://localhost:9292/watchlist', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(movie)
-    })
-    .then(res => res.json())
-    .then((data) =>{
-      alert(data.message)
-      setWatchlistMovies([...watchlistMovies, movie])
-    })
-  }
-
-  const handleRemoveFromWatchlist = (movie) => {
-    const watchlistMovie = user.watchlists.find(list => list.movie_id === movie.id)
-    fetch(`http://localhost:9292/watchlist/${watchlistMovie.id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then((data) =>{
-      alert(data.message)
-      const removedArray = watchlistMovies.filter(film => film.id !== movie.id)
-      setWatchlistMovies(removedArray)
-    })
   }
 
   const handleCreateReview = (data, movie) => {
@@ -182,9 +153,14 @@ const handleDirectorClick = (director) => {
 
         <Route path="/search" element={<Search searchArray={searchableThings} handleSearchSubmit={handleSearchSubmit} genreToggle={genreToggle} handleGenreToggle={handleGenreToggle} handleGenreSubmit={handleGenreSubmit}/>}/>
 
-        <Route path="/watchlist" element={<DisplayContainer watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} setDetailMovie={setDetailMovie} displayName={"My Watchlist"} handleDetailClick={handleDetailClick} moviesToShow={watchlistMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user} handleDirectorClick={handleDirectorClick}/>}/>
+        <Route path="/watchlist" element={<WatchlistDisplay />}/>
+        <Route path="/reviews" element={<ReviewsDisplay />}/>
 
-        <Route path="/reviews" element={<DisplayContainer watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} setDetailMovie={setDetailMovie} displayName={"My Reviews"} handleDetailClick={handleDetailClick} moviesToShow={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user} handleDirectorClick={handleDirectorClick}/>}/>
+        <Route path="/movies/:id" element={<ExactDetails />}/>
+
+        {/* <Route path="/watchlist" element={<DisplayContainer watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} setDetailMovie={setDetailMovie} displayName={"My Watchlist"} handleDetailClick={handleDetailClick} moviesToShow={watchlistMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user} handleDirectorClick={handleDirectorClick}/>}/> */}
+
+        {/* <Route path="/reviews" element={<DisplayContainer watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} setDetailMovie={setDetailMovie} displayName={"My Reviews"} handleDetailClick={handleDetailClick} moviesToShow={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user} handleDirectorClick={handleDirectorClick}/>}/>
 
         <Route path="/favorites" element={<DisplayContainer watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} setDetailMovie={setDetailMovie} displayName={"My Favorites"} handleDetailClick={handleDetailClick} moviesToShow={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user} handleDirectorClick={handleDirectorClick}/>}/>
 
@@ -194,7 +170,7 @@ const handleDirectorClick = (director) => {
 
         <Route path="/details" element={<ExactDetails movie={detailMovie} watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user}/>}/>
 
-        <Route path="/findmovie" element={<FindNewMovie watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user}/>}/>
+        <Route path="/findmovie" element={<FindNewMovie watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user}/>}/> */}
       </Routes>
     </div>
   );

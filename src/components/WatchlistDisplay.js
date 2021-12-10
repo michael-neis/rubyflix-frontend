@@ -2,31 +2,46 @@ import CardDisplay from "./CardDisplay";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
-function WatchlistContainer ({}) {
+function WatchlistDisplay () {
 
-    const [watchlistMovies, setWatchlistMovies] = useState([])
+    const [userMovies, setUserMovies] = useState([])
 
     useEffect(() => {
-        fetch('localhost:9292/watchlists')
+        fetch('http://localhost:9292/watchlist')
         .then(res => res.json())
         .then(data =>{
-            setWatchlistMovies(data)
+            setUserMovies(data)
         })
       }, [])
 
-    const movies = moviesToShow.map(movie => <CardDisplay key={movie.id} movie={movie} handleDetailClick={handleDetailClick} watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} setDetailMovie={setDetailMovie} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user} handleDirectorClick={handleDirectorClick}/>)
+
+  const handleRemoveFromWatchlist = (movie) => {
+      fetch(`http://localhost:9292/watchlist/${movie.watchlist.id}`, {
+          method: 'DELETE',
+          headers: {
+          'Content-Type': 'application/json'
+          }
+      })
+      .then(res => res.json())
+      .then(() =>{
+          const newArray = userMovies.filter(film => film.watchlist.id !== movie.watchlist.id)
+          setUserMovies(newArray)
+      })
+  }
+
+    const showMovies = userMovies.map(item => <CardDisplay key={item.movie.id} movie={item} handleRemoveFromWatchlist={handleRemoveFromWatchlist}/>)
 
     return(
         <>
-        <h1>{displayName}</h1>
+        <h1>My Watchlist</h1>
         <DisplayDiv>
-            {movies}
+            {showMovies}
         </DisplayDiv>
         </>
     )
 }
 
-export default WatchlistContainer
+export default WatchlistDisplay
 
 const DisplayDiv = styled.div `
 

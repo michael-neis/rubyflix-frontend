@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { NavLink, Link } from "react-router-dom"
 
-function Header ({setMoviesToShow, moviesToShow}) {
+function Header ({handleUserMovies}) {
 
 
     return(
