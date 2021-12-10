@@ -11,7 +11,7 @@ function ExactDetails ({movie, formBool, user, handleRemove, handleAdd, reviews,
 
     return(
         <DetailsDiv>
-            <img src="https://simg.nicepng.com/png/small/246-2469081_jake-adventure-time-and-jake-the-dog-image.png" alt="Pimcr"/>
+            <img src={movie.movie_img} alt={movie.title}/>
             <h1>{movie.title}</h1>
             <h2>Director: {movie.director.first_name} {movie.director.last_name}</h2>
             <h3>{movie.genre}  |  {movie.mpa_rating}</h3>

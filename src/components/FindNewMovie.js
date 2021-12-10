@@ -1,5 +1,7 @@
 import { Button } from "@mui/material"
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import styled from "styled-components"
 
 function FindNewMovie () {
 
@@ -10,6 +12,7 @@ function FindNewMovie () {
         .then(res => res.json())
         .then(data =>{
             setNewMovie(data)
+            console.log(data)
         })
     }
 
@@ -22,9 +25,13 @@ function FindNewMovie () {
     else if (!newMovie)
         newMovieToShow = null
     else
-        newMovieToShow = <div><img src="https://simg.nicepng.com/png/small/246-2469081_jake-adventure-time-and-jake-the-dog-image.png" alt="jake"/><h1>{newMovie.title}</h1>
+        newMovieToShow = <MovieDiv><img src={newMovie.movie_img} alt={newMovie.title}/><h1>{newMovie.title}</h1>
         <h2>Director: {newMovie.director.first_name} {newMovie.director.last_name}</h2>
-        <h3>{newMovie.genre}  |  {newMovie.mpa_rating}</h3></div>
+        <h3>{newMovie.genre}  |  {newMovie.mpa_rating}</h3>
+        <Link to={`/movies/${newMovie.id}`}>
+            <Button variant="contained" color="warning">Details</Button>
+        </Link>
+        </MovieDiv>
 
     return(
         <>
@@ -35,3 +42,14 @@ function FindNewMovie () {
 }
 
 export default FindNewMovie
+
+const MovieDiv = styled.div`
+a{
+    color: black;
+    text-decoration: none;
+}
+
+a:visited{
+    color: black;
+}
+`

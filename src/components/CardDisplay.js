@@ -11,7 +11,7 @@ function CardDisplay ({movie, handleAddToWatchlist, handleRemoveFromWatchlist}) 
 
     return(
     <CardDiv>
-        <img src="https://simg.nicepng.com/png/small/246-2469081_jake-adventure-time-and-jake-the-dog-image.png" alt="jake"/>
+        <img src={movie.movie.movie_img} alt={movie.movie.title}/>
         <Link to={`/movies/${movie.movie.id}`}>
             <h3>{movie.movie.title}</h3>
         </Link>
