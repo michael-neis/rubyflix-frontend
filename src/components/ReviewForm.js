@@ -7,8 +7,8 @@ import { useState } from 'react';
 
 function ReviewForm ({review, handleFormBool, handleEditReview, handleCreateReview, movie}) {
 
-    const defaultText = review ? review.comment : ""
-    const starDefault = review ? review.star_rating : 10
+    const defaultText = review ? review.review.comment : ""
+    const starDefault = review ? review.review.star_rating : 10
 
     const [formData, setFormData] = useState({
         star_rating: starDefault,
@@ -36,7 +36,7 @@ function ReviewForm ({review, handleFormBool, handleEditReview, handleCreateRevi
     
     const handleSubmit = (e, data, review, movie) => {
         e.preventDefault()
-        review ? handleEditReview(data, review, movie) : handleCreateReview(data, movie)
+        review ? handleEditReview(data, review.review, movie) : handleCreateReview(data, movie)
         handleFormBool()
     }
 

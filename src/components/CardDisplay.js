@@ -18,16 +18,8 @@ function CardDisplay ({movie, handleAddToWatchlist, handleRemoveFromWatchlist}) 
         {movie.review ? <h4 style={{color: 'gold'}}>{"★".repeat(movie.review.star_rating)}</h4> : <h5>*not yet reviewed*</h5>}
         <h6>Directed by:</h6>
         <DirectorH4 onClick={() => console.log("director")}>{movie.director.first_name} {movie.director.last_name}</DirectorH4>
-        <h5>{movie.movie.genre} | Rated: {movie.movie.mpa_rating}</h5>
+        <h5>{movie.movie.genre} | Rated {movie.movie.mpa_rating}</h5>
         {movie.watchlist ? <Button size="small" variant="contained" color="secondary" onClick={() => handleRemoveFromWatchlist(movie)}>Remove from Watchlist</Button> : <Button size="small" variant="contained" color="success" onClick={() => handleAddToWatchlist(movie)}>Add to Watchlist</Button>}
-        {/* <Link to="/" onClick={() => console.log(movie)}>
-            <h3>{movie.title}</h3>
-        </Link>
-        {isReviewed ? <h4 style={{color: 'gold'}}>{"★".repeat(isReviewed)}</h4> : <h5>*not yet reviewed*</h5>}
-        <h6>Directed by:</h6>
-        <DirectorH4 onClick={() => handleDirectorClick(movie.director)}>{movie.director.first_name} {movie.director.last_name}</DirectorH4>
-        <h5>{movie.genre} | Rated: {movie.mpa_rating}</h5>
-        {allMovieIdsWatch.includes(movieId) ? <Button size="small" variant="contained" color="secondary" onClick={() => handleRemoveFromWatchlist(movie)}>Remove from Watchlist</Button> : <Button size="small" variant="contained" color="success" onClick={() => handleAddToWatchlist(movie)}>Add to Watchlist</Button>} */}
     </CardDiv>
     )
 }
@@ -80,26 +72,3 @@ const DirectorH4 = styled.h4`
         font-style: italic;
     }
 `
-
-
-/* <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-            component="img"
-            alt="green iguana"
-            // height="140"
-            image="https://simg.nicepng.com/png/small/246-2469081_jake-adventure-time-and-jake-the-dog-image.png"
-        />
-        <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            {word}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-            </Typography>
-        </CardContent>
-        <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
-        </CardActions>
-        </Card> */

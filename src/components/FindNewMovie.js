@@ -1,8 +1,7 @@
 import { Button } from "@mui/material"
 import { useState } from "react"
-import ExactDetails from "./ExactDetails"
 
-function FindNewMovie ({watchlistMovies, reviewedMovies, handleEditReview, handleCreateReview, handleRemoveFromWatchlist, handleAddToWatchlist, user}) {
+function FindNewMovie () {
 
     const [newMovie, setNewMovie] = useState(null)
 
@@ -20,8 +19,12 @@ function FindNewMovie ({watchlistMovies, reviewedMovies, handleEditReview, handl
         newMovieToShow = <h1>Please review some movies so we can give you a suggestion!</h1>
     else if (newMovie === "not enough reviews")
         newMovieToShow = <h1>We couldn't find you a match. Try adding more reviews so we can narrow down a suggestion!</h1>
+    else if (!newMovie)
+        newMovieToShow = null
     else
-        newMovieToShow = <ExactDetails movie={newMovie} watchlistMovies={watchlistMovies} reviewedMovies={reviewedMovies} handleEditReview={handleEditReview} handleCreateReview={handleCreateReview} handleRemoveFromWatchlist={handleRemoveFromWatchlist} handleAddToWatchlist={handleAddToWatchlist} user={user}/>
+        newMovieToShow = <div><img src="https://simg.nicepng.com/png/small/246-2469081_jake-adventure-time-and-jake-the-dog-image.png" alt="jake"/><h1>{newMovie.title}</h1>
+        <h2>Director: {newMovie.director.first_name} {newMovie.director.last_name}</h2>
+        <h3>{newMovie.genre}  |  {newMovie.mpa_rating}</h3></div>
 
     return(
         <>

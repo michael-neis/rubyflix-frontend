@@ -25,7 +25,6 @@ function ReviewsDisplay () {
         })
         .then(res => res.json())
         .then((data) =>{
-            // alert(data.message)
             const newMovie = userMovies.map(movie => movie.movie.id === data.watchlist.movie_id ? {movie: movie.movie, review: movie.review, director: movie.director, watchlist: data.watchlist} : movie)
             setUserMovies(newMovie)
         })
@@ -40,7 +39,6 @@ function ReviewsDisplay () {
         })
         .then(res => res.json())
         .then((data) =>{
-            // alert(data.message)
             const newMovie = userMovies.map(movie => movie.movie.id === data.watchlist.movie_id ? {movie: movie.movie, review: movie.review, director: movie.director, wathclist: null} : movie)
             setUserMovies(newMovie)
         })
@@ -50,7 +48,7 @@ function ReviewsDisplay () {
 
     return(
         <>
-        <h1>My Watchlist</h1>
+        <h1>My Reviews</h1>
         <DisplayDiv>
             {showMovies}
         </DisplayDiv>
