@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# RubyFlix
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+RubyFlix is a proof of concept application for finding movies, adding movies to a watchlist and reviewing them.
 
-## Available Scripts
+RubyFlix is the final project for phase 3 of <a href="https://flatironschool.com/courses/coding-bootcamp/">Flatiron School's Software Engineering</a> bootcamp. This is the frontend repo for the project, built with React.js with custom CSS and styled components using the<a href="https://mui.com/">MUI library</a>. The <a href="https://github.com/michael-neis/rubyflix-backend">backend</a> is in a seperate repo, built with Ruby.
 
-In the project directory, you can run:
+## Launch
 
-### `npm start`
+To run RubyFlix locally, clone down both this repo and the <a href="https://github.com/michael-neis/rubyflix-backend">backend repo</a>.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Then, navigate into the backend directory and run `rake db:migrate` to set up the database associations and `bundle install` to install all of the gems in the gemfile. Because RubyFlix is a proof of concept project, all of the data is hand crafted in the `seeds.rb` file. Run `rake db:seed` to fill the database with that seed data. Finally, run `bundle exec rake server` in the command line to launch the server for the frontend to make fetches to.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Now that the backend is set up, navigate into the frontend directory and run `npm install`. With the backennd server running, run `npm start` from within the frontend directory to launch the application in the browser.
 
-### `npm test`
+## Walkthrough
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This app only includes one "user", with some seed data already filling out reviews and watchlist items. This also means that the notifications bar and "suggested to me" tab are both empty.
 
-### `npm run build`
+Clicking on the title of the movie card at any point in this application will direct you to the details of that movie, where you can add and edit reveiws as well as add or remove them from the watchlist.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The first tab is the "search" tab. In this tab, the user can sort through movies by genre or search directly by title. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In the "watchlist" tab, the user can view what movies they have added to their watchlist, as well as remove them.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In the "reviews" tab, the user cas view the movies they have reviewed, with their rating being shown in the number of stars.
 
-### `npm run eject`
+The "find something new" tab implements a custom algorithm that will find a movie suggestion based on the user's current highest rated movies. The algorithm, being handeled on the backend, will not suggest movies that the user has already reviewed, ensuring the suggestion is in fact something new. Clicking the "find me a new movie" button repeatedly will continue to suggest a new movie on every click. Note, because I seeded the data myself, there is a very limited list of movies, so the suggestions may repeat themselves frequently. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img width="1792" alt="DRNK screenshot" src="https://user-images.githubusercontent.com/90716315/153480144-ee581382-8bf5-4b4c-8f4b-86fcd1305592.png">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Created By
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Mike Neis
+- GitHub: https://github.com/michael-neis
+- LinkedIn: https://www.linkedin.com/in/michael-neis
+- Email: michael.neis12@gmail.com
