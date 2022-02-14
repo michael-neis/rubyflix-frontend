@@ -2,7 +2,7 @@
 
 RubyFlix is a proof of concept application for finding movies, adding movies to a watchlist and reviewing them.
 
-RubyFlix is the final project for phase 3 of <a href="https://flatironschool.com/courses/coding-bootcamp/">Flatiron School's Software Engineering</a> bootcamp. This is the frontend repo for the project, built with React.js with custom CSS and styled components using the<a href="https://mui.com/">MUI library</a>. The <a href="https://github.com/michael-neis/rubyflix-backend">backend</a> is in a seperate repo, built with Ruby.
+RubyFlix is the final project for phase 3 of <a href="https://flatironschool.com/courses/coding-bootcamp/">Flatiron School's Software Engineering</a> bootcamp. This is the frontend repo for the project, built with React.js with custom CSS and styled components using the <a href="https://mui.com/">MUI library</a>. The <a href="https://github.com/michael-neis/rubyflix-backend">backend</a> is in a seperate repo, built with Ruby.
 
 ## Launch
 
